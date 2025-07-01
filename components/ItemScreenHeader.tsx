@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import Markdown, { MarkdownIt } from 'react-native-markdown-display';
-import { Chip } from '@rneui/themed';
+// import { Chip } from '@rneui/themed';
 import Icon from '@react-native-vector-icons/fontawesome5';
 
 type Props = {
@@ -29,7 +29,7 @@ const ItemScreenHeader = ({ title, number, body, date, state }: Props) => {
             #{number} · {date}
           </Text>
         </View>
-        <View style={{ alignItems: 'flex-end' }}>
+        {/* <View style={{ alignItems: 'flex-end' }}>
           {state === 'OPEN' && (
             <Chip type="outline" size="sm">
               {state}
@@ -40,7 +40,7 @@ const ItemScreenHeader = ({ title, number, body, date, state }: Props) => {
               {state} <Icon name="check" size={18} color="white" />
             </Chip>
           )}
-        </View>
+        </View> */}
       </View>
 
       <Markdown

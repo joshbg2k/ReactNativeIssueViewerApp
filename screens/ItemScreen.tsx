@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useGetIssueWithCommentsQuery } from '../graphql/generated/graphql';
 import { Issue } from '../graphql/generated/graphql';
 import { ItemScreenHeader, Loading, Error } from '../components';
-import { Button } from '@rneui/themed';
+// import { Button } from '@rneui/themed';
 import Icon from '@react-native-vector-icons/fontawesome5';
 type RouteProps = RouteProp<MainStackParamList, 'Item'>;
 
@@ -59,7 +59,7 @@ const ItemScreen = ({ route }: Props) => {
     );
   };
   return (
-    <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
+    <View style={{ flex: 1 }}>
       <FlatList
         style={{ flex: 1, padding: 10 }}
         ListHeaderComponent={renderHeader}
@@ -86,7 +86,7 @@ const ItemScreen = ({ route }: Props) => {
         ListFooterComponent={
           !loading && comments.length > 0 ? (
             <View style={{ marginTop: 10 }}>
-              <Button>
+              {/* <Button>
                 View all comments on github.com{' '}
                 <Icon
                   style={{ marginLeft: 8 }}
@@ -94,12 +94,12 @@ const ItemScreen = ({ route }: Props) => {
                   size={20}
                   color="white"
                 />
-              </Button>
+              </Button> */}
             </View>
           ) : null
         }
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

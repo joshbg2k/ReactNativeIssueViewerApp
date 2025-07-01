@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { NetworkStatus } from '@apollo/client';
-import { SafeAreaView } from 'react-native-safe-area-context';
+// import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/fontawesome5';
 import { RootStackParamList } from '../navigation/types';
 import { useGetIssuesQuery } from '../graphql/generated/graphql';
@@ -112,7 +112,6 @@ const HomeScreen = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
       <FlatList
         data={issues}
         keyExtractor={item => item.id}
@@ -130,7 +129,7 @@ const HomeScreen = () => {
           </>
         }
       />
-    </SafeAreaView>
+
   );
 };
 

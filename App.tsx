@@ -8,7 +8,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-// import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ApolloProvider } from '@apollo/client';
 import { client } from './api/githubClient';
@@ -24,12 +24,6 @@ import { RootStackParamList, MainStackParamList } from './navigation/types';
 const searchIcon = (
   <Icon name="search" size={25} color="black" iconStyle="solid" />
 );
-
-// function App() {
-//   return(
-//     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text>HEY</Text></View>
-//   )
-// }
 
 const MainStack = createNativeStackNavigator<MainStackParamList>({
   initialRouteName: 'Home',
@@ -80,20 +74,22 @@ function MainStackScreen() {
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <NavigationContainer>
-        <RootStack.Navigator>
-          <RootStack.Screen
-            name="MainNavStack"
-            component={MainStackScreen}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Group screenOptions={{ presentation: 'modal' }}>
-            <RootStack.Screen name="Modal" component={SearchModalScreen} />
-          </RootStack.Group>
-        </RootStack.Navigator>
-      </NavigationContainer>
-    </ApolloProvider>
+    <SafeAreaProvider>
+      <ApolloProvider client={client}>
+        <NavigationContainer>
+          <RootStack.Navigator>
+            <RootStack.Screen
+              name="MainNavStack"
+              component={MainStackScreen}
+              options={{ headerShown: false }}
+            />
+            <RootStack.Group screenOptions={{ presentation: 'modal' }}>
+              <RootStack.Screen name="Modal" component={SearchModalScreen} />
+            </RootStack.Group>
+          </RootStack.Navigator>
+        </NavigationContainer>
+      </ApolloProvider>
+    </SafeAreaProvider>
   );
 }
 

@@ -131,7 +131,6 @@ const SearchResultsScreen = ({ route }: Props) => {
   if (error) return <Error />;
 
   return (
-    <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
       <FlatList
         data={issues}
         keyExtractor={item => item.id}
@@ -150,7 +149,6 @@ const SearchResultsScreen = ({ route }: Props) => {
           </>
         }
       />
-    </SafeAreaView>
   );
 };
 

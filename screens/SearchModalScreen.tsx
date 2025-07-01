@@ -3,7 +3,7 @@ import { View, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Icon from '@react-native-vector-icons/fontawesome5';
 import { RootStackParamList } from '../navigation/types';
-import { SearchBar, CheckBox } from '@rneui/themed';
+// import { SearchBar, CheckBox } from '@rneui/themed';
 
 const SearchModalScreen = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -46,7 +46,7 @@ const SearchModalScreen = () => {
 
   return (
     <View>
-      <SearchBar
+      {/* <SearchBar
         ref={searchRef}
         returnKeyType="search"
         onSubmitEditing={onSubmit}
@@ -86,7 +86,7 @@ const SearchModalScreen = () => {
         title="Open and closed issues"
         checked={selected === 'all'}
         onPress={() => setSelected('all')}
-      />
+      /> */}
     </View>
   );
 };

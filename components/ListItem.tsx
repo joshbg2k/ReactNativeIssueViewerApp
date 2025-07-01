@@ -48,7 +48,7 @@ const ListItem = (props: Props) => {
               #{item.number} · {item.createdAt}
             </Text>
           </View>
-          <View style={{ alignItems: 'flex-end' }}>
+          {/* <View style={{ alignItems: 'flex-end' }}>
             {item.state === 'OPEN' && (
               <Chip type="outline" size="sm">
                 {item.state}
@@ -60,7 +60,7 @@ const ListItem = (props: Props) => {
                 <Icon name="check" size={18} color="white" solid />
               </Chip>
             )}
-          </View>
+          </View> */}
         </View>
         <View
           style={{
