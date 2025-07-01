@@ -20,6 +20,8 @@
     "react": "19.1.0",
     "react-native": "0.80.1",
     "react-native-dotenv": "^3.4.11",
+    "react-native-markdown-display": "^7.0.2",
+    "react-native-paper": "^5.14.5",
     "react-navigation": "^5.0.0"
   },
   "devDependencies": {
