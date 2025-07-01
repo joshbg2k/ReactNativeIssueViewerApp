@@ -1,7 +1,5 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_ISSUES } from '../graphql/queries/getIssues.ts';
-import { githubClient } from '../api/githubClient';
+import { Chip } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import {
   createStaticNavigation,
@@ -48,19 +46,19 @@ const ListItem = (props: Props) => {
               #{item.number} · {item.createdAt}
             </Text>
           </View>
-          {/* <View style={{ alignItems: 'flex-end' }}>
+          <View style={{ alignItems: 'flex-end' }}>
             {item.state === 'OPEN' && (
-              <Chip type="outline" size="sm">
+              <Chip mode="flat">
                 {item.state}
               </Chip>
             )}
             {item.state === 'CLOSED' && (
-              <Chip size="sm">
+              <Chip mode="flat">
                 {item.state}
-                <Icon name="check" size={18} color="white" solid />
+                <Icon name="check" size={18} color="white" />
               </Chip>
             )}
-          </View> */}
+          </View>
         </View>
         <View
           style={{

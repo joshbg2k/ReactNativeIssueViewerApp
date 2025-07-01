@@ -1,13 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { View, TouchableOpacity, TextInput } from 'react-native';
+import { View, TouchableOpacity, TextInput, Text } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Icon from '@react-native-vector-icons/fontawesome5';
+import { Provider as PaperProvider, Button, IconButton } from 'react-native-paper';
 import { RootStackParamList } from '../navigation/types';
-// import { SearchBar, CheckBox } from '@rneui/themed';
+import { Searchbar, Checkbox, RadioButton, SegmentedButtons } from 'react-native-paper';
 
 const SearchModalScreen = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const searchRef = useRef<TextInput>(null);
+  const [checked, setChecked] = useState('')
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<'open' | 'closed' | 'all'>('open');
 
@@ -20,7 +22,7 @@ const SearchModalScreen = () => {
           onPress={() => navigation.goBack()}
           accessibilityLabel="Close search modal"
         >
-          <Icon name="times" size={25} color="black" solid />
+          <Icon name="times" size={25} color="black" iconStyle="solid" />
         </TouchableOpacity>
       ),
     });
@@ -41,53 +43,37 @@ const SearchModalScreen = () => {
     }, 100);
   };
 
-  const checkedIcon = <Icon name="check-square" size={25} color="black" />;
-  const uncheckedIcon = <Icon name="square" size={25} color="black" />;
-
   return (
-    <View>
-      {/* <SearchBar
+    <PaperProvider>
+    <View style={{flex: 1, padding: 10}}>
+      <Searchbar
         ref={searchRef}
-        returnKeyType="search"
-        onSubmitEditing={onSubmit}
-        placeholder="Search React Native on GitHub"
-        round
-        lightTheme
-        value={search}
         onChangeText={setSearch}
-        searchIcon={<Icon name="search" size={25} color="black" solid />}
-        clearIcon={
-          <Icon
-            name="times"
-            size={25}
-            color="black"
-            solid
-            onPress={() => setSearch('')}
-          />
-        }
+        value={search}
+        placeholder="Search React Native on GitHub"
+        onSubmitEditing={onSubmit}
+        icon="magnify"
+        clearIcon="close"
+        returnKeyType="search"
       />
-      <CheckBox
-        checkedIcon={checkedIcon}
-        uncheckedIcon={uncheckedIcon}
-        title="Open issues only"
-        checked={selected === 'open'}
-        onPress={() => setSelected('open')}
+      <SegmentedButtons
+        style={{marginTop:10}}
+        value={selected}
+        onValueChange={setSelected}
+        buttons={[
+          {
+            value: 'open',
+            label: 'Open',
+          },
+          {
+            value: 'closed',
+            label: 'Closed',
+          },
+          { value: 'all', label: 'All' },
+        ]}
       />
-      <CheckBox
-        checkedIcon={checkedIcon}
-        uncheckedIcon={uncheckedIcon}
-        title="Closed issues only"
-        checked={selected === 'closed'}
-        onPress={() => setSelected('closed')}
-      />
-      <CheckBox
-        checkedIcon={checkedIcon}
-        uncheckedIcon={uncheckedIcon}
-        title="Open and closed issues"
-        checked={selected === 'all'}
-        onPress={() => setSelected('all')}
-      /> */}
     </View>
+    </PaperProvider>
   );
 };
 
