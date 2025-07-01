@@ -2,13 +2,15 @@ import React, { useRef, useEffect, useState } from 'react';
 import { View, TouchableOpacity, TextInput, Text } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Icon from '@react-native-vector-icons/fontawesome5';
-import { Provider as PaperProvider, Button, IconButton } from 'react-native-paper';
+// import { Provider as PaperProvider, Button, IconButton } from 'react-native-paper';
 import { RootStackParamList } from '../navigation/types';
-import { Searchbar, Checkbox, RadioButton, SegmentedButtons } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
+import { Searchbar, Checkbox, RadioButton, SegmentedButtons, Button } from 'react-native-paper';
 
 const SearchModalScreen = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const searchRef = useRef<TextInput>(null);
+  const theme = useTheme();
   const [checked, setChecked] = useState('')
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<'open' | 'closed' | 'all'>('open');
@@ -17,18 +19,24 @@ const SearchModalScreen = () => {
     searchRef.current?.focus();
     navigation.setOptions({
       title: 'Search for issues',
+      headerTintColor: theme.colors.onSurface,
+      headerTitleStyle: {
+        color: theme.colors.onSurface,
+        fontWeight: 'bold',
+      },
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           accessibilityLabel="Close search modal"
         >
-          <Icon name="times" size={25} color="black" iconStyle="solid" />
+          <Text style={{fontSize: 18}}>Cancel</Text>
         </TouchableOpacity>
       ),
     });
   }, [navigation]);
 
   const onSubmit = () => {
+    if (search === '') return;
     let issueState = '';
     if (selected === 'open') issueState = 'is:open';
     else if (selected === 'closed') issueState = 'is:closed';
@@ -44,8 +52,7 @@ const SearchModalScreen = () => {
   };
 
   return (
-    <PaperProvider>
-    <View style={{flex: 1, padding: 10}}>
+    <View style={{flex: 1, padding: 10, rowGap: 10, backgroundColor: theme.colors.background}}>
       <Searchbar
         ref={searchRef}
         onChangeText={setSearch}
@@ -57,7 +64,7 @@ const SearchModalScreen = () => {
         returnKeyType="search"
       />
       <SegmentedButtons
-        style={{marginTop:10}}
+        // style={{marginTop:10}}
         value={selected}
         onValueChange={setSelected}
         buttons={[
@@ -72,8 +79,8 @@ const SearchModalScreen = () => {
           { value: 'all', label: 'All' },
         ]}
       />
+      <Button mode="contained" onPress={onSubmit}>Search</Button>
     </View>
-    </PaperProvider>
   );
 };
 

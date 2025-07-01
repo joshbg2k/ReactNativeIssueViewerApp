@@ -18,6 +18,8 @@ import {
 } from '../components';
 import { MainStackParamList } from '../navigation/types';
 import { Issue } from '../graphql/generated/graphql';
+import { useTheme } from 'react-native-paper';
+
 type RouteProps = RouteProp<MainStackParamList, 'SearchResults'>;
 
 type Props = {
@@ -26,7 +28,7 @@ type Props = {
 
 const SearchResultsScreen = ({ route }: Props) => {
   const { query, searchTerm } = route.params;
-  console.log(searchTerm);
+  const theme = useTheme();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [issues, setIssues] = useState<any[]>([]);
   const [pageInfo, setPageInfo] = useState<{
@@ -78,6 +80,11 @@ const SearchResultsScreen = ({ route }: Props) => {
   useEffect(() => {
     navigation.setOptions({
       title: 'Search Results for "' + searchTerm + '"',
+      headerTintColor: theme.colors.onSurface,
+      headerTitleStyle: {
+        color: theme.colors.onSurface,
+        fontWeight: 'bold',
+      },
     });
   }, []);
 
@@ -132,6 +139,7 @@ const SearchResultsScreen = ({ route }: Props) => {
 
   return (
       <FlatList
+        style={{ flex: 1 }}
         data={issues}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (

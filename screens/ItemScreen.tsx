@@ -10,7 +10,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useGetIssueWithCommentsQuery } from '../graphql/generated/graphql';
 import { Issue } from '../graphql/generated/graphql';
 import { ItemScreenHeader, Loading, Error } from '../components';
-// import { Button } from '@rneui/themed';
+import { useTheme } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import Icon from '@react-native-vector-icons/fontawesome5';
 type RouteProps = RouteProp<MainStackParamList, 'Item'>;
 
@@ -19,6 +20,7 @@ type Props = {
 };
 
 const ItemScreen = ({ route }: Props) => {
+  const theme = useTheme();
   const issue = route.params as any as Issue;
   const navigation = useNavigation<NavigationProp<MainStackParamList>>();
   const [issueBody, setIssueBody] = useState<string>('');
@@ -41,6 +43,11 @@ const ItemScreen = ({ route }: Props) => {
   useEffect(() => {
     navigation.setOptions({
       title: `${issue.title}`,
+      headerTintColor: theme.colors.onSurface,
+      headerTitleStyle: {
+        color: theme.colors.onSurface,
+        fontWeight: 'bold',
+      },
     });
   }, []);
 
@@ -59,7 +66,7 @@ const ItemScreen = ({ route }: Props) => {
     );
   };
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <FlatList
         style={{ flex: 1, padding: 10 }}
         ListHeaderComponent={renderHeader}
@@ -71,11 +78,11 @@ const ItemScreen = ({ route }: Props) => {
           index,
         })}
         renderItem={({ item }) => (
-          <View>
-            <Text>
+          <View style={{marginTop: 10, rowGap: 2}}>
+            <Text style={{fontSize: 16, color: theme.colors.onSurface, fontWeight:"bold"}}>
               {item.author.login} · {item.createdAt}
             </Text>
-            <Text>#{item.body}</Text>
+            <Text style={{fontSize: 16, color: theme.colors.onSurface, fontWeight:"medium"}}>#{item.body}</Text>
           </View>
         )}
         ListEmptyComponent={
@@ -86,15 +93,9 @@ const ItemScreen = ({ route }: Props) => {
         ListFooterComponent={
           !loading && comments.length > 0 ? (
             <View style={{ marginTop: 10 }}>
-              {/* <Button>
-                View all comments on github.com{' '}
-                <Icon
-                  style={{ marginLeft: 8 }}
-                  name="external-link-alt"
-                  size={20}
-                  color="white"
-                />
-              </Button> */}
+              <Button contentStyle={{flexDirection: 'row-reverse'}} icon="open-in-new" mode="contained" onPress={() => console.log('Pressed')}>
+              View all comments on github.com
+              </Button>
             </View>
           ) : null
         }

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { useTheme } from 'react-native-paper';
 
 const Error = () => {
+  const theme = useTheme();
   return (
     <View
       style={{
@@ -12,7 +14,7 @@ const Error = () => {
         paddingBottom: 100,
       }}
     >
-      <Text style={{ textAlign: 'center', fontSize: 18, fontWeight: 'bold' }}>
+      <Text style={{ color: theme.colors.onSurface, textAlign: 'center', fontSize: 18, fontWeight: 'bold' }}>
         There was an error loading the content. Please try again.
       </Text>
     </View>

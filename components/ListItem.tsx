@@ -17,7 +17,7 @@ import {
   Linking,
   TouchableOpacity,
 } from 'react-native';
-import Icon from '@react-native-vector-icons/fontawesome5';
+import { useTheme } from 'react-native-paper';
 // import { Chip } from '@rneui/themed';
 import { Issue } from '../graphql/generated/graphql';
 
@@ -28,12 +28,13 @@ type Props = {
 
 const ListItem = (props: Props) => {
   const { item, onPress } = props;
+  const theme = useTheme();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
-    <View style={{ marginTop: 10, paddingLeft: 10, paddingRight: 10 }}>
+    <View style={{ backgroundColor: theme.colors.onPrimary, marginTop: 10, paddingLeft: 10, paddingRight: 10 }}>
       <TouchableOpacity onPress={() => onPress(item)}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.title}</Text>
+        <Text style={{ color: theme.colors.primary, fontSize: 18, fontWeight: 'bold' }}>{item.title}</Text>
         <View
           style={{
             flexDirection: 'row',
@@ -42,20 +43,19 @@ const ListItem = (props: Props) => {
           }}
         >
           <View style={{ alignItems: 'flex-start' }}>
-            <Text style={{ fontSize: 14, color: 'gray' }}>
+            <Text style={{ fontSize: 14, color: theme.colors.onSurface, fontWeight: "bold" }}>
               #{item.number} · {item.createdAt}
             </Text>
           </View>
           <View style={{ alignItems: 'flex-end' }}>
             {item.state === 'OPEN' && (
               <Chip mode="flat">
-                {item.state}
+                <Text style={{color: theme.colors.onSurface, fontWeight:"800"}}>{item.state}</Text>
               </Chip>
             )}
             {item.state === 'CLOSED' && (
               <Chip mode="flat">
-                {item.state}
-                <Icon name="check" size={18} color="white" />
+                <Text style={{color: theme.colors.onSurface, fontWeight:"800"}}>{item.state}</Text>
               </Chip>
             )}
           </View>

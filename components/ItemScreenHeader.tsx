@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import Markdown, { MarkdownIt } from 'react-native-markdown-display';
 import { Chip } from 'react-native-paper';
-import Icon from '@react-native-vector-icons/fontawesome5';
+import { useTheme } from 'react-native-paper';
 
 type Props = {
   title: string;
@@ -13,9 +13,10 @@ type Props = {
 };
 
 const ItemScreenHeader = ({ title, number, body, date, state }: Props) => {
+  const theme = useTheme();
   return (
     <View>
-      <Text style={{ fontSize: 22, fontWeight: 'bold' }}>{title}</Text>
+      <Text style={{ color: theme.colors.primary, fontSize: 22, fontWeight: 'bold' }}>{title}</Text>
 
       <View
         style={{
@@ -25,19 +26,19 @@ const ItemScreenHeader = ({ title, number, body, date, state }: Props) => {
         }}
       >
         <View style={{ alignItems: 'flex-start' }}>
-          <Text style={{ fontSize: 18, color: 'gray' }}>
+          <Text style={{ fontSize: 16, color: theme.colors.secondary, fontWeight: 'bold'  }}>
             #{number} · {date}
           </Text>
         </View>
         <View style={{ alignItems: 'flex-end' }}>
           {state === 'OPEN' && (
             <Chip mode="flat">
-              {state}
+              <Text style={{color: theme.colors.onSurface, fontWeight:"800"}}>{state}</Text>
             </Chip>
           )}
           {state === 'CLOSED' && (
             <Chip mode="flat">
-              {state} <Icon name="check" size={18} color="white" iconStyle="solid" />
+               <Text style={{color: theme.colors.onSurface, fontWeight:"800"}}>{state}</Text>
             </Chip>
           )}
         </View>
@@ -48,7 +49,7 @@ const ItemScreenHeader = ({ title, number, body, date, state }: Props) => {
       >
         {body}
       </Markdown>
-      <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Comments</Text>
+      <Text style={{fontSize: 20, color: theme.colors.primary, fontWeight:"bold"}}>Comments</Text>
     </View>
   );
 };

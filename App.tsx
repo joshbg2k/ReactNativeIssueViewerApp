@@ -12,7 +12,12 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ApolloProvider } from '@apollo/client';
 import { client } from './api/githubClient';
-import Icon from '@react-native-vector-icons/fontawesome5';
+import { PaperProvider, MD3LightTheme } from 'react-native-paper';
+import { adaptNavigationTheme } from 'react-native-paper';
+import {
+  DefaultTheme as NavigationDefaultTheme,
+} from '@react-navigation/native';
+import Icon from '@react-native-vector-icons/material-design-icons';
 import {
   HomeScreen,
   ItemScreen,
@@ -20,10 +25,6 @@ import {
   SearchResultsScreen,
 } from './screens';
 import { RootStackParamList, MainStackParamList } from './navigation/types';
-
-const searchIcon = (
-  <Icon name="search" size={25} color="black" iconStyle="solid" />
-);
 
 const MainStack = createNativeStackNavigator<MainStackParamList>({
   initialRouteName: 'Home',
@@ -62,7 +63,7 @@ function MainStackScreen() {
         name="Home"
         options={{
           title: 'React Native Issues',
-          headerRight: () => <TouchableOpacity>{searchIcon}</TouchableOpacity>,
+          headerRight: () => <TouchableOpacity><Icon name="magnify" size={36}  /></TouchableOpacity>,
         }}
         component={HomeScreen}
       />
@@ -73,21 +74,71 @@ function MainStackScreen() {
 }
 
 function App() {
+  const { LightTheme: NavigationTheme } = adaptNavigationTheme({
+    reactNavigationLight: {
+      ...NavigationDefaultTheme,
+      colors: {
+        ...NavigationDefaultTheme.colors,
+        ...MD3LightTheme.colors,
+        primary: MD3LightTheme.colors.primary,
+        secondary: MD3LightTheme.colors.secondary,
+        tertiary: MD3LightTheme.colors.tertiary,
+        background: MD3LightTheme.colors.background,
+        card: MD3LightTheme.colors.background,
+        text: MD3LightTheme.colors.onSurface,
+        border: MD3LightTheme.colors.outline,
+        notification: MD3LightTheme.colors.error,
+      },
+    },
+  });
+  
+  const theme = {
+    ...MD3LightTheme,
+  };
+
+  const CombinedTheme = {
+    ...NavigationDefaultTheme,
+    colors: {
+      ...NavigationDefaultTheme.colors,
+      ...NavigationTheme.colors,
+      // secondary: MD3LightTheme.colors.secondary,
+    },
+  };
+
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider >
       <ApolloProvider client={client}>
-        <NavigationContainer>
-          <RootStack.Navigator>
-            <RootStack.Screen
-              name="MainNavStack"
-              component={MainStackScreen}
-              options={{ headerShown: false }}
-            />
-            <RootStack.Group screenOptions={{ presentation: 'modal' }}>
-              <RootStack.Screen name="Modal" component={SearchModalScreen} />
-            </RootStack.Group>
-          </RootStack.Navigator>
-        </NavigationContainer>
+        <PaperProvider theme={theme}>
+          <NavigationContainer theme={CombinedTheme}>
+            <RootStack.Navigator 
+              screenOptions={{
+                headerStyle: {
+                  backgroundColor: theme.colors.background,
+                },
+                headerTintColor: theme.colors.onSurface,
+                headerTitleStyle: {
+                  color: theme.colors.onSurface,
+                  fontWeight: 'bold',
+                },
+              }}
+              >
+              <RootStack.Screen
+                name="MainNavStack"
+                component={MainStackScreen}
+                options={{ headerShown: false,
+                  headerTintColor: CombinedTheme.colors.primary,
+                  headerTitleStyle: {
+                    color: CombinedTheme.colors.primary,
+                    fontWeight: 'bold',
+                  },
+                }}
+              />
+              <RootStack.Group screenOptions={{ presentation: 'modal' }}>
+                <RootStack.Screen name="Modal" component={SearchModalScreen} />
+              </RootStack.Group>
+            </RootStack.Navigator>
+          </NavigationContainer>
+        </PaperProvider>
       </ApolloProvider>
     </SafeAreaProvider>
   );

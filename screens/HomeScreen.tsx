@@ -12,17 +12,17 @@ import {
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { NetworkStatus } from '@apollo/client';
 // import { SafeAreaView } from 'react-native-safe-area-context';
-import Icon from '@react-native-vector-icons/fontawesome5';
+// import Icon from '@react-native-vector-icons/fontawesome5';
+import Icon from '@react-native-vector-icons/material-design-icons';
+import { useTheme } from 'react-native-paper';
 import { RootStackParamList } from '../navigation/types';
 import { useGetIssuesQuery } from '../graphql/generated/graphql';
 import { ListItem, Loading, Error, LoadMoreError } from '../components';
 import { Issue } from '../graphql/generated/graphql';
 
 const HomeScreen = () => {
-  const searchIcon = (
-    <Icon name="search" size={25} color="black" iconStyle="solid" />
-  );
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const theme = useTheme();
   const [issues, setIssues] = useState<any[]>([]);
   const [pageInfo, setPageInfo] = useState<{
     endCursor: string;
@@ -48,10 +48,10 @@ const HomeScreen = () => {
         onPress={() => navigation.navigate('Modal', issues)}
         accessibilityLabel="Go to search page"
       >
-        {searchIcon}
+        <Icon style={{color: theme.colors.onSurface }} name="magnify" size={36} />
       </TouchableOpacity>
     ),
-    [navigation, issues, searchIcon],
+    [navigation, issues],
   );
 
   useEffect(() => {
@@ -67,6 +67,11 @@ const HomeScreen = () => {
       });
 
       navigation.setOptions({
+        headerTintColor: theme.colors.onSurface,
+        headerTitleStyle: {
+          color: theme.colors.onSurface,
+          fontWeight: 'bold',
+        },
         headerRight: () => handleHeaderRight({ issues: newIssues }),
       });
     }
@@ -113,6 +118,7 @@ const HomeScreen = () => {
 
   return (
       <FlatList
+        style={{ flex: 1 }}
         data={issues}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
