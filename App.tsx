@@ -11,25 +11,24 @@ import { NavigationContainer } from '@react-navigation/native';
 // import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ApolloProvider } from '@apollo/client';
-// import { client } from './api/githubClient';
-// import Icon from '@react-native-vector-icons/FontAwesome5';
+import { client } from './api/githubClient';
+import Icon from '@react-native-vector-icons/fontawesome5';
 // import {
 //   HomeScreen,
 //   ItemScreen,
 //   SearchModalScreen,
 //   SearchResultsScreen,
 // } from './screens';
-// import { RootStackParamList, MainStackParamList } from './navigation/types';
+import { RootStackParamList, MainStackParamList } from './navigation/types';
 
-// const searchIcon = (
-//   <Icon name="search" size={25} color="black" iconStyle="solid" />
-// );
+const searchIcon = (
+  <Icon name="search" size={25} color="black" iconStyle="solid" />
+);
 
 function App() {
   return(
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text>HEY</Text></View>
   )
-
 }
 // const MainStack = createNativeStackNavigator<MainStackParamList>({
 //   initialRouteName: 'Home',
