@@ -7,19 +7,18 @@ const config: CodegenConfig = {
     {
       'https://api.github.com/graphql': {
         headers: {
-          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, // Make sure this env var is set
-          'User-Agent': 'MyReactNativeApp', // GitHub requires this header
+          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          'User-Agent': 'MyReactNativeApp',
         },
       },
     },
   ],
-  documents: 'graphql/**/*.{ts,tsx}', // Your query files here
+  documents: 'graphql/**/*.{ts,tsx}',
   generates: {
     'graphql/generated/graphql.ts': {
-      // Output file for types + hooks
       // preset: 'client',
       config: {
-        withHooks: true, // Enable React hooks generation
+        withHooks: true,
         withHOC: false,
         withComponent: false,
       },
@@ -30,7 +29,6 @@ const config: CodegenConfig = {
       ],
     },
     './graphql.schema.json': {
-      // JSON introspection schema
       plugins: ['introspection'],
     },
   },
