@@ -8,5 +8,32 @@ export const client = new ApolloClient({
       authorization: `Bearer ${GITHUB_TOKEN}`,
     },
   }),
-  cache: new InMemoryCache(),
+  // cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          repository: {
+            keyArgs: ['owner', 'name'],
+          },
+        },
+      },
+      Repository: {
+        fields: {
+          issues: {
+            keyArgs: false,
+            merge(existing = {}, incoming) {
+              const existingEdges = existing.edges || [];
+              const incomingEdges = incoming.edges || [];
+
+              return {
+                ...incoming,
+                edges: [...existingEdges, ...incomingEdges],
+              };
+            },
+          },
+        },
+      },
+    },
+  }),
 });
