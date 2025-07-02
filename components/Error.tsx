@@ -20,7 +20,7 @@ const Error: React.FC<Props> =  (props: Props) => {
       }}
     >
       <Text style={{ color: theme.colors.onSurface, textAlign: 'center', fontSize: 18, fontWeight: 'bold' }}>
-        {}
+        {message}
       </Text>
     </View>
   );
