@@ -8,7 +8,6 @@ export const client = new ApolloClient({
       authorization: `Bearer ${GITHUB_TOKEN}`,
     },
   }),
-  // cache: new InMemoryCache(),
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
