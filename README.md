@@ -10,13 +10,13 @@ You will not be able to run this project without supplying a GitHub auth token. 
 2. Replace `your-github-token` with the GitHu btoken value
 3. Save and rename the file to .env (Git will then ignore it)
 
-## Addtional notes:
+## Addtional notes
 
 - I built and tested using iOS only, not Android
 - I created decent test coverage, but it is incomplete.
 - If you are not able to build and run the app, you can [watch a short video](https://drive.google.com/file/d/11k8pxK47TaZ5oZraA8Y_PMshxXKCln2I/view?usp=share_link) to see the main features
 
-Now here's the rest of the default READEME.
+Now here's the rest of the default READEME. Thanks again!
 
 Josh
 
