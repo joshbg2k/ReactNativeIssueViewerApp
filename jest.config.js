@@ -4,7 +4,7 @@ module.exports = {
     '^.+\\.(js|ts|tsx)$': 'babel-jest',
   },
   transformIgnorePatterns: [
-    "node_modules/(?!(react-native|@react-native|@react-navigation|react-native-vector-icons|@apollo/client|graphql)/)"
+    "node_modules/(?!(react-native|@react-native|@react-navigation|react-native-markdown-display|react-native-vector-icons|@apollo/client|graphql)/)"
   ],
   moduleNameMapper: {
     // mock .ttf files
