@@ -2,11 +2,6 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
-
-// interface Props {
-  
-// }
-
 type Props = {
   message?: string;
 };

@@ -1,13 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState  } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
   TouchableOpacity,
   FlatList,
-  Pressable,
-  Linking,
-  ActivityIndicator,
 } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { NetworkStatus } from '@apollo/client';

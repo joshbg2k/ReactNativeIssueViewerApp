@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, ActivityIndicator, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import {
   RouteProp,
   useNavigation,
   NavigationProp,
 } from '@react-navigation/native';
 import { NetworkStatus } from '@apollo/client';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../navigation/types';
 import { useSearchIssuesQuery } from '../graphql/generated/graphql';
 import {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import {
   RouteProp,
   useNavigation,
@@ -12,7 +12,7 @@ import { Issue } from '../graphql/generated/graphql';
 import { ItemScreenHeader, Loading, Error } from '../components';
 import { useTheme } from 'react-native-paper';
 import { Button } from 'react-native-paper';
-import Icon from '@react-native-vector-icons/fontawesome5';
+
 type RouteProps = RouteProp<MainStackParamList, 'Item'>;
 
 type Props = {

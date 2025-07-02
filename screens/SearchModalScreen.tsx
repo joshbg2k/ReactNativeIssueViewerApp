@@ -1,11 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { View, TouchableOpacity, TextInput, Text } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import Icon from '@react-native-vector-icons/fontawesome5';
-// import { Provider as PaperProvider, Button, IconButton } from 'react-native-paper';
 import { RootStackParamList } from '../navigation/types';
 import { useTheme } from 'react-native-paper';
-import { Searchbar, Checkbox, RadioButton, SegmentedButtons, Button } from 'react-native-paper';
+import { Searchbar, SegmentedButtons, Button } from 'react-native-paper';
 
 const SearchModalScreen = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();

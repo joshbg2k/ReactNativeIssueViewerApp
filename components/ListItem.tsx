@@ -2,23 +2,16 @@ import React from 'react';
 import { Chip } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import {
-  createStaticNavigation,
   useNavigation,
-  NavigationContainer,
   NavigationProp,
-  NavigatorScreenParams,
 } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
 import {
   Text,
   View,
-  FlatList,
-  Pressable,
-  Linking,
   TouchableOpacity,
 } from 'react-native';
 import { useTheme } from 'react-native-paper';
-// import { Chip } from '@rneui/themed';
 import { Issue } from '../graphql/generated/graphql';
 
 type Props = {
