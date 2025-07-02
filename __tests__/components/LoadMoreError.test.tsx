@@ -8,7 +8,7 @@ describe('LoadMoreError', () => {
     const { getByText } = render(
       <PaperProvider>
         <LoadMoreError />
-      </PaperProvider>
+      </PaperProvider>,
     );
     expect(getByText('Error loading more content.')).toBeTruthy();
   });

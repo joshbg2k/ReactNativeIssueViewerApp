@@ -9,7 +9,7 @@ describe('NoSearchResults', () => {
     const { getByText } = render(
       <PaperProvider>
         <NoSearchResults searchTerm={term} />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     expect(getByText(`No results for ${term}`)).toBeTruthy();

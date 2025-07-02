@@ -18,7 +18,7 @@ const Loading = ({ fullScreen = false, infiniteScrolling = false }: Props) => {
         </View>
       )}
       {infiniteScrolling && (
-        <View 
+        <View
           testID="infinite-scroll-loader"
           style={{ flex: 1, marginTop: 20, marginBottom: 30 }}
         >
@@ -26,10 +26,7 @@ const Loading = ({ fullScreen = false, infiniteScrolling = false }: Props) => {
         </View>
       )}
       {!infiniteScrolling && !fullScreen && (
-        <ActivityIndicator 
-          testID="default-loader"
-          size="large" 
-        />
+        <ActivityIndicator testID="default-loader" size="large" />
       )}
     </>
   );

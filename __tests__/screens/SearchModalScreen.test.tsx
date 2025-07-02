@@ -24,7 +24,7 @@ describe('SearchModalScreen', () => {
     const { getByPlaceholderText, getByText } = render(
       <PaperProvider>
         <SearchModalScreen />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     expect(getByPlaceholderText('Search React Native on GitHub')).toBeTruthy();
@@ -38,7 +38,7 @@ describe('SearchModalScreen', () => {
     const { getByText } = render(
       <PaperProvider>
         <SearchModalScreen />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     fireEvent.press(getByText('Search'));
@@ -49,7 +49,7 @@ describe('SearchModalScreen', () => {
     const { getByText, getByPlaceholderText } = render(
       <PaperProvider>
         <SearchModalScreen />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     const input = getByPlaceholderText('Search React Native on GitHub');
@@ -61,7 +61,7 @@ describe('SearchModalScreen', () => {
 
     expect(mockGoBack).toHaveBeenCalled();
 
-    await act(() => new Promise((r) => setTimeout(r, 150)));
+    await act(() => new Promise(r => setTimeout(r, 150)));
 
     expect(mockNavigate).toHaveBeenCalledWith('MainNavStack', {
       screen: 'SearchResults',
@@ -76,13 +76,13 @@ describe('SearchModalScreen', () => {
     render(
       <PaperProvider>
         <SearchModalScreen />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     expect(mockSetOptions).toHaveBeenCalledWith(
       expect.objectContaining({
         title: 'Search for issues',
-      })
+      }),
     );
   });
 });

@@ -1,8 +1,5 @@
-import React, { useEffect, useState  } from 'react';
-import {
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, FlatList } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { NetworkStatus } from '@apollo/client';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -32,6 +29,8 @@ const HomeScreen: React.FC = () => {
   });
 
   useEffect(() => {
+    console.log('data shape');
+    console.log(data);
     if (data?.repository?.issues.edges) {
       const newIssues = data.repository.issues.edges
         ?.map(edge => edge?.node)
@@ -54,15 +53,23 @@ const HomeScreen: React.FC = () => {
             onPress={() => navigation.navigate('Modal')}
             accessibilityLabel="Go to search page"
           >
-            <Icon style={{color: "black" }} name="magnify" size={36} />
+            <Icon style={{ color: 'black' }} name="magnify" size={36} />
           </TouchableOpacity>
-        )
+        ),
       });
     }
   }, [data]);
 
   const handleLoadMore = async () => {
-    if (!pageInfo.hasNextPage || loadMoreError || loadingMore || networkStatus === NetworkStatus.loading || loading || !pageInfo.endCursor) return;
+    if (
+      !pageInfo.hasNextPage ||
+      loadMoreError ||
+      loadingMore ||
+      networkStatus === NetworkStatus.loading ||
+      loading ||
+      !pageInfo.endCursor
+    )
+      return;
     setLoadingMore(true);
     setLoadMoreError(false);
 
@@ -97,9 +104,9 @@ const HomeScreen: React.FC = () => {
   }
 
   if (error) {
-    console.log('error')
-    console.log(error)
-    return <ErrorView />;
+    console.log('error');
+    console.log(error);
+    return <ErrorView testID="error-message" />;
   }
 
   const handlePress = (item: Issue) => {
@@ -119,8 +126,7 @@ const HomeScreen: React.FC = () => {
       ListFooterComponent={
         <>
           {loadMoreError && <LoadMoreError />}
-          {loadingMore && (<Loading infiniteScrolling />
-)}
+          {loadingMore && <Loading infiniteScrolling />}
         </>
       }
     />

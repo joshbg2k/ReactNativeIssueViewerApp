@@ -88,11 +88,18 @@ const SearchResultsScreen = ({ route }: Props) => {
   }, []);
 
   const loadMore = async () => {
-    if (!pageInfo.hasNextPage || loadMoreError || loadingMore || networkStatus === NetworkStatus.loading || loading || !pageInfo.endCursor)
+    if (
+      !pageInfo.hasNextPage ||
+      loadMoreError ||
+      loadingMore ||
+      networkStatus === NetworkStatus.loading ||
+      loading ||
+      !pageInfo.endCursor
+    )
       return;
     setLoadMoreError(false);
     setLoadingMore(true);
-    
+
     try {
       const result = await fetchMore({
         variables: { query, after: pageInfo.endCursor, first: 50 },

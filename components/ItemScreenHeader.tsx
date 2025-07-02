@@ -16,7 +16,15 @@ const ItemScreenHeader = ({ title, number, body, date, state }: Props) => {
   const theme = useTheme();
   return (
     <View>
-      <Text style={{ color: theme.colors.primary, fontSize: 22, fontWeight: 'bold' }}>{title}</Text>
+      <Text
+        style={{
+          color: theme.colors.primary,
+          fontSize: 22,
+          fontWeight: 'bold',
+        }}
+      >
+        {title}
+      </Text>
 
       <View
         style={{
@@ -26,19 +34,33 @@ const ItemScreenHeader = ({ title, number, body, date, state }: Props) => {
         }}
       >
         <View style={{ alignItems: 'flex-start' }}>
-          <Text style={{ fontSize: 16, color: theme.colors.secondary, fontWeight: 'bold'  }}>
+          <Text
+            style={{
+              fontSize: 16,
+              color: theme.colors.secondary,
+              fontWeight: 'bold',
+            }}
+          >
             #{number} · {date}
           </Text>
         </View>
         <View style={{ alignItems: 'flex-end' }}>
           {state === 'OPEN' && (
             <Chip mode="flat">
-              <Text style={{color: theme.colors.onSurface, fontWeight:"800"}}>{state}</Text>
+              <Text
+                style={{ color: theme.colors.onSurface, fontWeight: '800' }}
+              >
+                {state}
+              </Text>
             </Chip>
           )}
           {state === 'CLOSED' && (
             <Chip mode="flat">
-               <Text style={{color: theme.colors.onSurface, fontWeight:"800"}}>{state}</Text>
+              <Text
+                style={{ color: theme.colors.onSurface, fontWeight: '800' }}
+              >
+                {state}
+              </Text>
             </Chip>
           )}
         </View>
@@ -49,7 +71,15 @@ const ItemScreenHeader = ({ title, number, body, date, state }: Props) => {
       >
         {body}
       </Markdown>
-      <Text style={{fontSize: 20, color: theme.colors.primary, fontWeight:"bold"}}>Comments</Text>
+      <Text
+        style={{
+          fontSize: 20,
+          color: theme.colors.primary,
+          fontWeight: 'bold',
+        }}
+      >
+        Activity
+      </Text>
     </View>
   );
 };

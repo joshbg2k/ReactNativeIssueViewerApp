@@ -9,7 +9,7 @@ const SearchModalScreen = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const searchRef = useRef<TextInput>(null);
   const theme = useTheme();
-  const [checked, setChecked] = useState('')
+  const [checked, setChecked] = useState('');
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<'open' | 'closed' | 'all'>('open');
 
@@ -27,7 +27,7 @@ const SearchModalScreen = () => {
           onPress={() => navigation.goBack()}
           accessibilityLabel="Close search modal"
         >
-          <Text style={{fontSize: 18}}>Cancel</Text>
+          <Text style={{ fontSize: 18 }}>Cancel</Text>
         </TouchableOpacity>
       ),
     });
@@ -50,7 +50,14 @@ const SearchModalScreen = () => {
   };
 
   return (
-    <View style={{flex: 1, padding: 10, rowGap: 10, backgroundColor: theme.colors.background}}>
+    <View
+      style={{
+        flex: 1,
+        padding: 10,
+        rowGap: 10,
+        backgroundColor: theme.colors.background,
+      }}
+    >
       <Searchbar
         ref={searchRef}
         onChangeText={setSearch}
@@ -76,7 +83,9 @@ const SearchModalScreen = () => {
           { value: 'all', label: 'All' },
         ]}
       />
-      <Button mode="contained" onPress={onSubmit}>Search</Button>
+      <Button mode="contained" onPress={onSubmit}>
+        Search
+      </Button>
     </View>
   );
 };

@@ -16,18 +16,20 @@ describe('ItemScreenHeader', () => {
     const { getByText } = render(
       <PaperProvider>
         <ItemScreenHeader {...defaultProps} />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     expect(getByText(defaultProps.title)).toBeTruthy();
-    expect(getByText(`#${defaultProps.number} · ${defaultProps.date}`)).toBeTruthy();
+    expect(
+      getByText(`#${defaultProps.number} · ${defaultProps.date}`),
+    ).toBeTruthy();
   });
 
   it('renders body as Markdown', () => {
     const { getByText } = render(
       <PaperProvider>
         <ItemScreenHeader {...defaultProps} />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     expect(getByText('Steps to reproduce:')).toBeTruthy();
@@ -39,7 +41,7 @@ describe('ItemScreenHeader', () => {
     const { getByText } = render(
       <PaperProvider>
         <ItemScreenHeader {...defaultProps} />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     expect(getByText('OPEN')).toBeTruthy();
@@ -49,7 +51,7 @@ describe('ItemScreenHeader', () => {
     const { getByText } = render(
       <PaperProvider>
         <ItemScreenHeader {...defaultProps} state="CLOSED" />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     expect(getByText('CLOSED')).toBeTruthy();
@@ -59,9 +61,9 @@ describe('ItemScreenHeader', () => {
     const { getByText } = render(
       <PaperProvider>
         <ItemScreenHeader {...defaultProps} />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
-    expect(getByText('Comments')).toBeTruthy();
+    expect(getByText('Activity')).toBeTruthy();
   });
 });

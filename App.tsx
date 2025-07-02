@@ -14,9 +14,7 @@ import { ApolloProvider } from '@apollo/client';
 import { client } from './api/githubClient';
 import { PaperProvider, MD3LightTheme } from 'react-native-paper';
 import { adaptNavigationTheme } from 'react-native-paper';
-import {
-  DefaultTheme as NavigationDefaultTheme,
-} from '@react-navigation/native';
+import { DefaultTheme as NavigationDefaultTheme } from '@react-navigation/native';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import {
   HomeScreen,
@@ -63,7 +61,11 @@ function MainStackScreen() {
         name="Home"
         options={{
           title: 'React Native Issues',
-          headerRight: () => <TouchableOpacity><Icon name="magnify" size={36} /></TouchableOpacity>,
+          headerRight: () => (
+            <TouchableOpacity>
+              <Icon name="magnify" size={36} />
+            </TouchableOpacity>
+          ),
         }}
         component={HomeScreen}
       />
@@ -91,7 +93,7 @@ function App() {
       },
     },
   });
-  
+
   const theme = {
     ...MD3LightTheme,
   };
@@ -105,11 +107,11 @@ function App() {
   };
 
   return (
-    <SafeAreaProvider >
+    <SafeAreaProvider>
       <ApolloProvider client={client}>
         <PaperProvider theme={theme}>
           <NavigationContainer theme={CombinedTheme}>
-            <RootStack.Navigator 
+            <RootStack.Navigator
               screenOptions={{
                 headerStyle: {
                   backgroundColor: theme.colors.background,
@@ -120,11 +122,12 @@ function App() {
                   fontWeight: 'bold',
                 },
               }}
-              >
+            >
               <RootStack.Screen
                 name="MainNavStack"
                 component={MainStackScreen}
-                options={{ headerShown: false,
+                options={{
+                  headerShown: false,
                   headerTintColor: CombinedTheme.colors.primary,
                   headerTitleStyle: {
                     color: CombinedTheme.colors.primary,

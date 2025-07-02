@@ -7,9 +7,11 @@ type Props = {
 };
 
 const Error = (props: Props) => {
-// const ErrorView: React.FC<Props> =  (props: Props) => {
+  // const ErrorView: React.FC<Props> =  (props: Props) => {
   const theme = useTheme();
-  const message = props.message ? props.message : "There was an error loading the content. Please try again."
+  const message = props.message
+    ? props.message
+    : 'There was an error loading the content. Please try again.';
   return (
     <View
       testID="error-message"
@@ -21,7 +23,14 @@ const Error = (props: Props) => {
         paddingBottom: 100,
       }}
     >
-      <Text style={{ color: theme.colors.onSurface, textAlign: 'center', fontSize: 18, fontWeight: 'bold' }}>
+      <Text
+        style={{
+          color: theme.colors.onSurface,
+          textAlign: 'center',
+          fontSize: 18,
+          fontWeight: 'bold',
+        }}
+      >
         {message}
       </Text>
     </View>

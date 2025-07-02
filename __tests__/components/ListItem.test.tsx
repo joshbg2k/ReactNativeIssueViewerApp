@@ -3,7 +3,6 @@ import { render, fireEvent } from '@testing-library/react-native';
 import ListItem from '../../components/ListItem';
 import { Provider as PaperProvider } from 'react-native-paper';
 
-// Mock React Navigation
 jest.mock('@react-navigation/native', () => ({
   useNavigation: () => ({
     navigate: jest.fn(),
@@ -22,18 +21,23 @@ describe('ListItem', () => {
     const { getByText } = render(
       <PaperProvider>
         <ListItem item={defaultItem} onPress={jest.fn()} />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     expect(getByText(defaultItem.title)).toBeTruthy();
-    expect(getByText(`#${defaultItem.number} · ${defaultItem.createdAt}`)).toBeTruthy();
+    expect(
+      getByText(`#${defaultItem.number} · ${defaultItem.createdAt}`),
+    ).toBeTruthy();
   });
 
   it('renders OPEN state chip', () => {
     const { getByText } = render(
       <PaperProvider>
-        <ListItem item={{ ...defaultItem, state: 'OPEN' }} onPress={jest.fn()} />
-      </PaperProvider>
+        <ListItem
+          item={{ ...defaultItem, state: 'OPEN' }}
+          onPress={jest.fn()}
+        />
+      </PaperProvider>,
     );
 
     expect(getByText('OPEN')).toBeTruthy();
@@ -42,8 +46,11 @@ describe('ListItem', () => {
   it('renders CLOSED state chip', () => {
     const { getByText } = render(
       <PaperProvider>
-        <ListItem item={{ ...defaultItem, state: 'CLOSED' }} onPress={jest.fn()} />
-      </PaperProvider>
+        <ListItem
+          item={{ ...defaultItem, state: 'CLOSED' }}
+          onPress={jest.fn()}
+        />
+      </PaperProvider>,
     );
 
     expect(getByText('CLOSED')).toBeTruthy();
@@ -55,7 +62,7 @@ describe('ListItem', () => {
     const { getByText } = render(
       <PaperProvider>
         <ListItem item={defaultItem} onPress={onPressMock} />
-      </PaperProvider>
+      </PaperProvider>,
     );
 
     fireEvent.press(getByText(defaultItem.title));

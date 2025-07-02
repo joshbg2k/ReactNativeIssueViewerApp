@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Linking } from 'react-native';
 import {
   RouteProp,
   useNavigation,
@@ -65,7 +65,10 @@ const ItemScreen = ({ route }: Props) => {
     );
   };
   return (
-    <SafeAreaView edges={['bottom']} style={{ flex: 1, backgroundColor: theme.colors.background }}>
+    <SafeAreaView
+      edges={['bottom']}
+      style={{ flex: 1, backgroundColor: theme.colors.background }}
+    >
       <FlatList
         style={{ flex: 1, padding: 10 }}
         ListHeaderComponent={renderHeader}
@@ -77,26 +80,54 @@ const ItemScreen = ({ route }: Props) => {
           index,
         })}
         renderItem={({ item }) => (
-          <View testID="comment" style={{marginTop: 10, rowGap: 2}}>
-            <Text style={{fontSize: 16, color: theme.colors.onSurface, fontWeight:"bold"}}>
+          <View testID="comment" style={{ marginTop: 10, rowGap: 2 }}>
+            <Text
+              style={{
+                fontSize: 16,
+                color: theme.colors.onSurface,
+                fontWeight: 'bold',
+              }}
+            >
               {item.author.login} · {item.createdAt}
             </Text>
-            <Text style={{fontSize: 16, color: theme.colors.onSurface, fontWeight:"medium"}}>#{item.body}</Text>
+            <Text
+              style={{
+                fontSize: 16,
+                color: theme.colors.onSurface,
+                fontWeight: 'medium',
+              }}
+            >
+              #{item.body}
+            </Text>
           </View>
         )}
         ListEmptyComponent={
-          <Text style={{ textAlign: 'center', fontSize: 18 }}>
-            *** No comments yet ***
+          <Text
+            style={{
+              color: theme.colors.secondary,
+              fontStyle: 'italic',
+              textAlign: 'center',
+              fontSize: 18,
+            }}
+          >
+            No comments yet
           </Text>
         }
         ListFooterComponent={
-          !loading && comments.length > 0 ? (
+          !loading && (
             <View style={{ marginTop: 10 }}>
-              <Button contentStyle={{flexDirection: 'row-reverse'}} icon="open-in-new" mode="contained" onPress={() => console.log('Pressed')}>
-              View all comments on github.com
+              <Button
+                contentStyle={{ flexDirection: 'row-reverse' }}
+                icon="open-in-new"
+                mode="contained"
+                onPress={() => {
+                  Linking.openURL(issue.url);
+                }}
+              >
+                View issue on github.com
               </Button>
             </View>
-          ) : null
+          )
         }
       />
     </SafeAreaView>
