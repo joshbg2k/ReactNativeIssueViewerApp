@@ -4,13 +4,13 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 Thanks for taking the time to reivew this project!
 
-You will not be able to run this project without supplying a GitHub auth token. To make this easy, I created a file called [`env`](https://github.com/joshbg2k/ReactNativeIssueViewerApp/blob/main/env) at the root level of this project:
+You will not be able to run this project without supplying a GitHub auth token. To make this easy, I created a file called [`env`](https://github.com/joshbg2k/ReactNativeIssueViewerApp/blob/main/env) at the root level of this project. Take these steps to set up your token:
 
-1. You will see the contents `GITHUB_TOKEN=your-github-token`
-2. Replace `your-github-token` with the GitHubtoken value
-3. Save and rename the file to .env (Git will ignore it)
+1. Open the file and see the contents `GITHUB_TOKEN=your-github-token`
+2. Replace `your-github-token` with the GitHu btoken value
+3. Save and rename the file to .env (Git will then ignore it)
 
-Here are some notes:
+##Addtional notes:
 
 - I built and tested using iOS only, not Android
 - I created decent test coverage, but it is incomplete.
@@ -20,7 +20,7 @@ Now here's the rest of the default READEME.
 
 Josh
 
-# Getting Started
+## Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
