@@ -1,5 +1,25 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
+# Before Getting Started
+
+Thanks for taking the time to reivew this project!
+
+You will not be able to run this project without supplying a GitHub auth token. To make this easy, I created a file called [`env`](https://github.com/joshbg2k/ReactNativeIssueViewerApp/blob/main/env) at the root level of this project:
+
+1. You will see the contents `GITHUB_TOKEN=your-github-token`
+2. Replace `your-github-token` with the GitHubtoken value
+3. Save and rename the file to .env (Git will ignore it)
+
+Here are some notes:
+
+- I built and tested using iOS only, not Android
+- I created decent test coverage, but it is incomplete.
+- If you are not able to build and run the app, you can [watch a short video](https://drive.google.com/file/d/11k8pxK47TaZ5oZraA8Y_PMshxXKCln2I/view?usp=share_link) to see the main features
+
+Now here's the rest of the default READEME.
+
+Josh
+
 # Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
@@ -22,15 +42,16 @@ yarn start
 
 With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
 
-### Android
+~~### Android~~ ### Android not tested!
 
-```sh
-# Using npm
-npm run android
+~~```sh~~
+~~# Using npm~~
+~~npm run android~~
 
-# OR using Yarn
-yarn android
-```
+~~# OR using Yarn~~
+~~yarn android~~
+
+````~~
 
 ### iOS
 
@@ -40,7 +61,7 @@ The first time you create a new project, run the Ruby bundler to install CocoaPo
 
 ```sh
 bundle install
-```
+````
 
 Then, and every time you update your native dependencies, run:
 
