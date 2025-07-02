@@ -65,7 +65,7 @@ const ItemScreen = ({ route }: Props) => {
     );
   };
   return (
-    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
+    <SafeAreaView edges={['bottom']} style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <FlatList
         style={{ flex: 1, padding: 10 }}
         ListHeaderComponent={renderHeader}
@@ -99,7 +99,7 @@ const ItemScreen = ({ route }: Props) => {
           ) : null
         }
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -139,6 +139,7 @@ const SearchResultsScreen = ({ route }: Props) => {
   if (error) return <Error />;
 
   return (
+    <SafeAreaView edges={['bottom']} style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <FlatList
         style={{ flex: 1 }}
         data={issues}
@@ -156,6 +157,7 @@ const SearchResultsScreen = ({ route }: Props) => {
           </>
         }
       />
+    </SafeAreaView>
   );
 };
 

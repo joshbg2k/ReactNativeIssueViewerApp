@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { NetworkStatus } from '@apollo/client';
-// import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { useTheme } from 'react-native-paper';
 import { RootStackParamList } from '../navigation/types';
@@ -147,6 +147,7 @@ const HomeScreen: React.FC = () => {
   };
 
   return (
+    <SafeAreaView edges={['bottom']} style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <FlatList
         style={{ flex: 1 }}
         data={issues}
@@ -164,7 +165,7 @@ const HomeScreen: React.FC = () => {
           </>
         }
       />
-
+    </SafeAreaView>
   );
 };
 

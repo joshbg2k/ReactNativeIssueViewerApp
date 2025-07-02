@@ -101,7 +101,6 @@ function App() {
     colors: {
       ...NavigationDefaultTheme.colors,
       ...NavigationTheme.colors,
-      // secondary: MD3LightTheme.colors.secondary,
     },
   };
 
