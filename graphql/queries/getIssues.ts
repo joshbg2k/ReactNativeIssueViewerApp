@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 export const GET_ISSUES = gql`
   query GetIssues($first: Int, $after: String) {
     repository(owner: "facebook", name: "react-native") {
+      id
       issues(
         first: $first
         after: $after
