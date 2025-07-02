@@ -6,11 +6,13 @@ type Props = {
   message?: string;
 };
 
-const Error: React.FC<Props> =  (props: Props) => {
+const Error = (props: Props) => {
+// const ErrorView: React.FC<Props> =  (props: Props) => {
   const theme = useTheme();
   const message = props.message ? props.message : "There was an error loading the content. Please try again."
   return (
     <View
+      testID="error-message"
       style={{
         flex: 1,
         justifyContent: 'center',

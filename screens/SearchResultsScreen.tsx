@@ -11,7 +11,7 @@ import { useSearchIssuesQuery } from '../graphql/generated/graphql';
 import {
   ListItem,
   Loading,
-  Error,
+  ErrorView,
   LoadMoreError,
   NoSearchResults,
 } from '../components';
@@ -135,7 +135,7 @@ const SearchResultsScreen = ({ route }: Props) => {
     navigation.navigate('MainNavStack', { screen: 'Item', params: item });
   };
 
-  if (error) return <Error />;
+  if (error) return <ErrorView />;
 
   return (
     <FlatList

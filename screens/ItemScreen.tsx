@@ -9,7 +9,7 @@ import { MainStackParamList } from '../navigation/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useGetIssueWithCommentsQuery } from '../graphql/generated/graphql';
 import { Issue } from '../graphql/generated/graphql';
-import { ItemScreenHeader, Loading, Error } from '../components';
+import { ItemScreenHeader, Loading, ErrorView } from '../components';
 import { useTheme } from 'react-native-paper';
 import { Button } from 'react-native-paper';
 
@@ -51,7 +51,7 @@ const ItemScreen = ({ route }: Props) => {
   }, []);
 
   if (loading) return <Loading fullScreen={true} />;
-  if (error) return <Error />;
+  if (error) return <ErrorView />;
 
   const renderHeader = () => {
     return (
@@ -77,7 +77,7 @@ const ItemScreen = ({ route }: Props) => {
           index,
         })}
         renderItem={({ item }) => (
-          <View style={{marginTop: 10, rowGap: 2}}>
+          <View testID="comment" style={{marginTop: 10, rowGap: 2}}>
             <Text style={{fontSize: 16, color: theme.colors.onSurface, fontWeight:"bold"}}>
               {item.author.login} · {item.createdAt}
             </Text>

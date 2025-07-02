@@ -10,7 +10,7 @@ import Icon from '@react-native-vector-icons/material-design-icons';
 import { useTheme } from 'react-native-paper';
 import { RootStackParamList } from '../navigation/types';
 import { useGetIssuesQuery } from '../graphql/generated/graphql';
-import { ListItem, Loading, Error, LoadMoreError } from '../components';
+import { ListItem, Loading, ErrorView, LoadMoreError } from '../components';
 import { Issue } from '../graphql/generated/graphql';
 
 const HomeScreen: React.FC = () => {
@@ -96,7 +96,11 @@ const HomeScreen: React.FC = () => {
     return <Loading fullScreen />;
   }
 
-  if (error) return <Error />;
+  if (error) {
+    console.log('error')
+    console.log(error)
+    return <ErrorView />;
+  }
 
   const handlePress = (item: Issue) => {
     navigation.navigate('MainNavStack', { screen: 'Item', params: item });
