@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import Error from '../components/Error';
+import Error from '../../components/Error';
 
 describe('Error Component', () => {
   it('renders correctly with the provided error message', () => {

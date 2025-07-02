@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import Loading from '../components/Loading';
+import Loading from '../../components/Loading';
 
 describe('Loading', () => {
   it('renders full screen loading when fullScreen is true', () => {

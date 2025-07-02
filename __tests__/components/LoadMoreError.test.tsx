@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import LoadMoreError from '../components/LoadMoreError';
+import LoadMoreError from '../../components/LoadMoreError';
 import { Provider as PaperProvider } from 'react-native-paper';
 
 describe('LoadMoreError', () => {

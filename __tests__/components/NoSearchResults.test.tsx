@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import NoSearchResults from '../components/NoSearchResults';
+import NoSearchResults from '../../components/NoSearchResults';
 import { Provider as PaperProvider } from 'react-native-paper';
 
 describe('NoSearchResults', () => {

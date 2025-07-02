@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
-import ItemScreenHeader from '../components/ItemScreenHeader';
+import ItemScreenHeader from '../../components/ItemScreenHeader';
 
 describe('ItemScreenHeader', () => {
   const defaultProps = {
