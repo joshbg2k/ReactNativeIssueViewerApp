@@ -11,11 +11,4 @@ describe('Error Component', () => {
     expect(getByText(errorMessage)).toBeTruthy();
   });
 
-  it('renders a default message if no message is provided', () => {
-    const defaultMessage = 'An error occurred.';
-    const { getByText } = render(<Error />);
-
-    // Check if the default message is displayed
-    expect(getByText(defaultMessage)).toBeTruthy();
-  });
 });

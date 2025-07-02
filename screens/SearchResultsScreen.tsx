@@ -128,7 +128,7 @@ const SearchResultsScreen = ({ route }: Props) => {
   };
 
   if (networkStatus === NetworkStatus.loading) {
-    return <Loading fullScreen={true} />;
+    return <Loading fullScreen />;
   }
 
   const handlePress = (item: Issue) => {
@@ -151,7 +151,7 @@ const SearchResultsScreen = ({ route }: Props) => {
       ListFooterComponent={
         <>
           {loadMoreError && <LoadMoreError />}
-          {loadingMore && <Loading infiniteScrolliing={true} />}
+          {loadingMore && <Loading infiniteScrolling />}
         </>
       }
     />

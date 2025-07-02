@@ -93,7 +93,7 @@ const HomeScreen: React.FC = () => {
   };
 
   if (networkStatus === NetworkStatus.loading) {
-    return <Loading fullScreen={true} />;
+    return <Loading fullScreen />;
   }
 
   if (error) return <Error />;
@@ -115,7 +115,7 @@ const HomeScreen: React.FC = () => {
       ListFooterComponent={
         <>
           {loadMoreError && <LoadMoreError />}
-          {loadingMore && (<Loading infiniteScrolliing={true} />
+          {loadingMore && (<Loading infiniteScrolling />
 )}
         </>
       }

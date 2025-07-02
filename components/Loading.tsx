@@ -3,25 +3,34 @@ import { View, ActivityIndicator } from 'react-native';
 
 type Props = {
   fullScreen?: boolean;
-  infiniteScrolliing?: boolean;
+  infiniteScrolling?: boolean;
 };
 
-const Loading = ({ fullScreen = false, infiniteScrolliing = false }: Props) => {
+const Loading = ({ fullScreen = false, infiniteScrolling = false }: Props) => {
   return (
     <>
       {fullScreen && (
         <View
+          testID="full-screen-loader"
           style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
           <ActivityIndicator size="large" />
         </View>
       )}
-      {infiniteScrolliing && (
-        <View style={{ flex: 1, marginTop: 20, marginBottom: 30 }}>
+      {infiniteScrolling && (
+        <View 
+          testID="infinite-scroll-loader"
+          style={{ flex: 1, marginTop: 20, marginBottom: 30 }}
+        >
           <ActivityIndicator size="large" />
         </View>
       )}
-      {!infiniteScrolliing && !fullScreen && <ActivityIndicator size="large" />}
+      {!infiniteScrolling && !fullScreen && (
+        <ActivityIndicator 
+          testID="default-loader"
+          size="large" 
+        />
+      )}
     </>
   );
 };
