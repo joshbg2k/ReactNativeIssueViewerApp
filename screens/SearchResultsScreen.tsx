@@ -139,25 +139,23 @@ const SearchResultsScreen = ({ route }: Props) => {
   if (error) return <Error />;
 
   return (
-    <SafeAreaView edges={['bottom']} style={{ flex: 1, backgroundColor: theme.colors.background }}>
-      <FlatList
-        style={{ flex: 1 }}
-        data={issues}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <MemoizedListItem item={item} onPress={handlePress} />
-        )}
-        onEndReached={loadMore}
-        onEndReachedThreshold={0.8}
-        ListEmptyComponent={<NoSearchResults searchTerm={searchTerm} />}
-        ListFooterComponent={
-          <>
-            {loadMoreError && <LoadMoreError />}
-            {loadingMore && <Loading infiniteScrolliing={true} />}
-          </>
-        }
-      />
-    </SafeAreaView>
+    <FlatList
+      style={{ flex: 1, backgroundColor: theme.colors.background }}
+      data={issues}
+      keyExtractor={item => item.id}
+      renderItem={({ item }) => (
+        <MemoizedListItem item={item} onPress={handlePress} />
+      )}
+      onEndReached={loadMore}
+      onEndReachedThreshold={0.8}
+      ListEmptyComponent={<NoSearchResults searchTerm={searchTerm} />}
+      ListFooterComponent={
+        <>
+          {loadMoreError && <LoadMoreError />}
+          {loadingMore && <Loading infiniteScrolliing={true} />}
+        </>
+      }
+    />
   );
 };
 

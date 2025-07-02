@@ -32,48 +32,10 @@ const HomeScreen: React.FC = () => {
   const MemoizedListItem = React.memo(ListItem);
   const { data, loading, error, fetchMore, networkStatus } = useGetIssuesQuery({
     variables: {
-      first: 20 as number, // or however many you want per page
+      first: 20 as number,
       after: null,
     },
   });
-
-  interface HeaderRightProps {
-    issues: Issue[];
-  }
-
-  // const handleHeaderRight = useCallback(
-  //   ({ issues }: HeaderRightProps) => (
-  //     <TouchableOpacity
-  //       onPress={() => navigation.navigate('Modal', issues)}
-  //       accessibilityLabel="Go to search page"
-  //     >
-  //       <Icon style={{color: "black" }} name="magnify" size={36} />
-  //     </TouchableOpacity>
-  //   ),
-  //   [navigation, issues],
-  // );
-
-  const handleHeaderRight = () => {
-    return <TouchableOpacity
-          onPress={() => navigation.navigate('Modal', issues)}
-          accessibilityLabel="Go to search page"
-        >
-          <Icon style={{color: "black" }} name="magnify" size={36} />
-        </TouchableOpacity>
-  }
-  // const handleHeaderRight = () => { console.log('nav')};
-
-  //   const handleHeaderRight = useCallback(
-  //   () => (
-  //     <TouchableOpacity
-  //       onPress={() => navigation.navigate('Modal', issues)}
-  //       accessibilityLabel="Go to search page"
-  //     >
-  //       <Icon style={{color: "black" }} name="magnify" size={36} />
-  //     </TouchableOpacity>
-  //   ),
-  //   [navigation],
-  // );
 
   useEffect(() => {
     if (data?.repository?.issues.edges) {
@@ -147,25 +109,23 @@ const HomeScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView edges={['bottom']} style={{ flex: 1, backgroundColor: theme.colors.background }}>
-      <FlatList
-        style={{ flex: 1 }}
-        data={issues}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <MemoizedListItem item={item} onPress={handlePress} />
-        )}
-        onEndReached={handleLoadMore}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={
-          <>
-            {loadMoreError && <LoadMoreError />}
-            {loadingMore && (<Loading infiniteScrolliing={true} />
+    <FlatList
+      style={{ flex: 1, backgroundColor: theme.colors.background }}
+      data={issues}
+      keyExtractor={item => item.id}
+      renderItem={({ item }) => (
+        <MemoizedListItem item={item} onPress={handlePress} />
+      )}
+      onEndReached={handleLoadMore}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={
+        <>
+          {loadMoreError && <LoadMoreError />}
+          {loadingMore && (<Loading infiniteScrolliing={true} />
 )}
-          </>
-        }
-      />
-    </SafeAreaView>
+        </>
+      }
+    />
   );
 };
 
