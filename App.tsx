@@ -63,7 +63,7 @@ function MainStackScreen() {
         name="Home"
         options={{
           title: 'React Native Issues',
-          headerRight: () => <TouchableOpacity><Icon name="magnify" size={36}  /></TouchableOpacity>,
+          headerRight: () => <TouchableOpacity><Icon name="magnify" size={36} /></TouchableOpacity>,
         }}
         component={HomeScreen}
       />

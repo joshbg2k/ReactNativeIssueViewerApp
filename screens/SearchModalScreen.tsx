@@ -64,7 +64,6 @@ const SearchModalScreen = () => {
         returnKeyType="search"
       />
       <SegmentedButtons
-        // style={{marginTop:10}}
         value={selected}
         onValueChange={setSelected}
         buttons={[

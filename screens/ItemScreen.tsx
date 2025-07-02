@@ -31,7 +31,6 @@ const ItemScreen = ({ route }: Props) => {
 
   useEffect(() => {
     if (data) {
-      console.log('GitHub Issue CALL:', data);
       const uidata = data.repository?.issue ? [data.repository.issue] : [];
       const commentsMapped =
         uidata[0]?.comments?.nodes?.map((comment: any) => comment) || [];

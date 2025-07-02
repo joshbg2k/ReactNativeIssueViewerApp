@@ -2,8 +2,18 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
-const Error = () => {
+
+// interface Props {
+  
+// }
+
+type Props = {
+  message?: string;
+};
+
+const Error: React.FC<Props> =  (props: Props) => {
   const theme = useTheme();
+  const message = props.message ? props.message : "There was an error loading the content. Please try again."
   return (
     <View
       style={{
@@ -15,7 +25,7 @@ const Error = () => {
       }}
     >
       <Text style={{ color: theme.colors.onSurface, textAlign: 'center', fontSize: 18, fontWeight: 'bold' }}>
-        There was an error loading the content. Please try again.
+        {}
       </Text>
     </View>
   );

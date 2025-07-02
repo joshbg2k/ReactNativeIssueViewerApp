@@ -12,7 +12,6 @@ import {
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { NetworkStatus } from '@apollo/client';
 // import { SafeAreaView } from 'react-native-safe-area-context';
-// import Icon from '@react-native-vector-icons/fontawesome5';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { useTheme } from 'react-native-paper';
 import { RootStackParamList } from '../navigation/types';
@@ -20,7 +19,7 @@ import { useGetIssuesQuery } from '../graphql/generated/graphql';
 import { ListItem, Loading, Error, LoadMoreError } from '../components';
 import { Issue } from '../graphql/generated/graphql';
 
-const HomeScreen = () => {
+const HomeScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const theme = useTheme();
   const [issues, setIssues] = useState<any[]>([]);
@@ -42,20 +41,42 @@ const HomeScreen = () => {
     issues: Issue[];
   }
 
-  const handleHeaderRight = useCallback(
-    ({ issues }: HeaderRightProps) => (
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Modal', issues)}
-        accessibilityLabel="Go to search page"
-      >
-        <Icon style={{color: theme.colors.onSurface }} name="magnify" size={36} />
-      </TouchableOpacity>
-    ),
-    [navigation, issues],
-  );
+  // const handleHeaderRight = useCallback(
+  //   ({ issues }: HeaderRightProps) => (
+  //     <TouchableOpacity
+  //       onPress={() => navigation.navigate('Modal', issues)}
+  //       accessibilityLabel="Go to search page"
+  //     >
+  //       <Icon style={{color: "black" }} name="magnify" size={36} />
+  //     </TouchableOpacity>
+  //   ),
+  //   [navigation, issues],
+  // );
+
+  const handleHeaderRight = () => {
+    return <TouchableOpacity
+          onPress={() => navigation.navigate('Modal', issues)}
+          accessibilityLabel="Go to search page"
+        >
+          <Icon style={{color: "black" }} name="magnify" size={36} />
+        </TouchableOpacity>
+  }
+  // const handleHeaderRight = () => { console.log('nav')};
+
+  //   const handleHeaderRight = useCallback(
+  //   () => (
+  //     <TouchableOpacity
+  //       onPress={() => navigation.navigate('Modal', issues)}
+  //       accessibilityLabel="Go to search page"
+  //     >
+  //       <Icon style={{color: "black" }} name="magnify" size={36} />
+  //     </TouchableOpacity>
+  //   ),
+  //   [navigation],
+  // );
 
   useEffect(() => {
-    if (data?.repository?.issues) {
+    if (data?.repository?.issues.edges) {
       const newIssues = data.repository.issues.edges
         ?.map(edge => edge?.node)
         .filter(Boolean) as Issue[];
@@ -72,21 +93,28 @@ const HomeScreen = () => {
           color: theme.colors.onSurface,
           fontWeight: 'bold',
         },
-        headerRight: () => handleHeaderRight({ issues: newIssues }),
+        headerRight: () => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Modal')}
+            accessibilityLabel="Go to search page"
+          >
+            <Icon style={{color: "black" }} name="magnify" size={36} />
+          </TouchableOpacity>
+        )
       });
     }
   }, [data]);
 
   const handleLoadMore = async () => {
-    if (!pageInfo.hasNextPage || loadingMore) return;
-    setLoadMoreError(false);
+    if (!pageInfo.hasNextPage || loadMoreError || loadingMore || networkStatus === NetworkStatus.loading || loading || !pageInfo.endCursor) return;
     setLoadingMore(true);
+    setLoadMoreError(false);
 
     try {
       const result = await fetchMore({
         variables: {
           after: pageInfo.endCursor,
-          first: 50,
+          first: 20,
         },
       });
 
@@ -99,8 +127,9 @@ const HomeScreen = () => {
         hasNextPage: boolean;
       };
       setPageInfo(newPageInfo);
+      setLoadingMore(false);
     } catch (err) {
-      setLoadingMore(true);
+      setLoadMoreError(true);
       console.error('Error loading more issues:', err);
     } finally {
       setLoadingMore(false);
@@ -110,6 +139,7 @@ const HomeScreen = () => {
   if (networkStatus === NetworkStatus.loading) {
     return <Loading fullScreen={true} />;
   }
+
   if (error) return <Error />;
 
   const handlePress = (item: Issue) => {
@@ -128,10 +158,9 @@ const HomeScreen = () => {
         onEndReachedThreshold={0.5}
         ListFooterComponent={
           <>
-            {loadMoreError && !loadingMore && <LoadMoreError />}
-            {loadingMore && !loadMoreError && (
-              <Loading infiniteScrolliing={true} />
-            )}
+            {loadMoreError && <LoadMoreError />}
+            {loadingMore && (<Loading infiniteScrolliing={true} />
+)}
           </>
         }
       />

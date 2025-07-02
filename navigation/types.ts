@@ -11,5 +11,5 @@ export type RootStackParamList = {
   MainNavStack: NavigatorScreenParams<MainStackParamList> & {
     item?: Partial<Issue>;
   };
-  Modal: Array<Partial<Issue>>;
+  Modal: undefined;
 };

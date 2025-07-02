@@ -89,10 +89,11 @@ const SearchResultsScreen = ({ route }: Props) => {
   }, []);
 
   const loadMore = async () => {
-    if (!pageInfo.hasNextPage || loadingMore || loading || !pageInfo.endCursor)
+    if (!pageInfo.hasNextPage || loadMoreError || loadingMore || networkStatus === NetworkStatus.loading || loading || !pageInfo.endCursor)
       return;
     setLoadMoreError(false);
     setLoadingMore(true);
+    
     try {
       const result = await fetchMore({
         variables: { query, after: pageInfo.endCursor, first: 50 },
@@ -117,8 +118,8 @@ const SearchResultsScreen = ({ route }: Props) => {
           hasNextPage: boolean;
         };
         setPageInfo(newPageInfo);
-        setLoadingMore(false);
       }
+      setLoadingMore(false);
     } catch (err) {
       setLoadMoreError(true);
       console.error('Error loading more:', err);
@@ -150,10 +151,8 @@ const SearchResultsScreen = ({ route }: Props) => {
         ListEmptyComponent={<NoSearchResults searchTerm={searchTerm} />}
         ListFooterComponent={
           <>
-            {loadMoreError && !loadingMore && <LoadMoreError />}
-            {loadingMore && !loadMoreError && (
-              <Loading infiniteScrolliing={true} />
-            )}
+            {loadMoreError && <LoadMoreError />}
+            {loadingMore && <Loading infiniteScrolliing={true} />}
           </>
         }
       />
