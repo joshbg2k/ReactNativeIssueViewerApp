@@ -7,7 +7,7 @@ Thanks for taking the time to review this project!
 You will not be able to run this project without supplying a GitHub auth token. To make this easy, I created a file called [`env`](https://github.com/joshbg2k/ReactNativeIssueViewerApp/blob/main/env) at the root level of this project. Take these steps to set up your token:
 
 1. If you need a GitHub API token, [follow this guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic).
-2. Open the file and see the contents `GITHUB_TOKEN=your-github-token` (no quotes).
+2. Open the `env` file and see the contents `GITHUB_TOKEN=your-github-token` (no quotes).
 3. Replace `your-github-token` with the GitHub token value.
 4. Save and rename the file to .env (Git will then ignore it).
 
