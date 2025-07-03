@@ -19,6 +19,8 @@ You will not be able to run this project without supplying a GitHub API token. T
 
 ![30-second snippet of app walkthrough](https://i.imgur.com/0WleMhe.gif)
 
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/nwg1ErX" data-context="false" ><a href="//imgur.com/a/nwg1ErX"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
 Now here's the rest of the default README. Thanks again!
 
 Josh
