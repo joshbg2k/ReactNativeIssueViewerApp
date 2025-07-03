@@ -17,6 +17,8 @@ You will not be able to run this project without supplying a GitHub API token. T
 - I created decent test coverage, but it is incomplete.
 - If you are not able to build and run the app, you can [watch this short video](https://drive.google.com/file/d/1HIFhom-qLbWwR6Cww6xrnnagFTvIulj5/view?usp=share_link) to see a walkthrough of the main features.
 
+<iframe src="https://drive.google.com/file/d/1HIFhom-qLbWwR6Cww6xrnnagFTvIulj5/preview" width="640" height="480" allow="autoplay"></iframe>
+
 Now here's the rest of the default README. Thanks again!
 
 Josh
