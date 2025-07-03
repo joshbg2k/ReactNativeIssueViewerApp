@@ -13,9 +13,9 @@ You will not be able to run this project without supplying a GitHub auth token. 
 
 ## Addtional notes
 
-- I built and tested using iOS only, not Android
+- I built and tested using iOS only, not Android.
 - I created decent test coverage, but it is incomplete.
-- If you are not able to build and run the app, you can [watch a short video](https://drive.google.com/file/d/1HIFhom-qLbWwR6Cww6xrnnagFTvIulj5/view?usp=share_link) to see the main features
+- If you are not able to build and run the app, you can [watch a short video](https://drive.google.com/file/d/1HIFhom-qLbWwR6Cww6xrnnagFTvIulj5/view?usp=share_link) to see the main features.
 
 Now here's the rest of the default READEME. Thanks again!
 
