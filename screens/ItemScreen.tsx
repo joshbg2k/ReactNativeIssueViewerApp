@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Linking } from 'react-native';
+import { View, Text, FlatList, Linking, StyleSheet } from 'react-native';
 import {
   RouteProp,
   useNavigation,
@@ -8,6 +8,7 @@ import {
 import { MainStackParamList } from '../navigation/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useGetIssueWithCommentsQuery } from '../graphql/generated/graphql';
+import Markdown, { MarkdownIt } from 'react-native-markdown-display';
 import { Issue } from '../graphql/generated/graphql';
 import { ItemScreenHeader, Loading, ErrorView } from '../components';
 import { useTheme } from 'react-native-paper';
@@ -27,6 +28,32 @@ const ItemScreen = ({ route }: Props) => {
   const [comments, setComments] = useState<any[]>([]);
   const { data, loading, error } = useGetIssueWithCommentsQuery({
     variables: { number: issue.number ?? 0 },
+  });
+
+  // i know this is dupiclicated, styling the markdown content is jsut a lats minute thing to make the app look pretty!
+  const pageStyles = StyleSheet.create({
+    heading3: {
+      fontSize: 22,
+      color: theme.colors.onSurface,
+      fontWeight: 'bold',
+      marginTop: 14,
+    },
+    body: {
+      fontSize: 18,
+      color: theme.colors.onSurface,
+    },
+    image: {
+      width: '100%',
+      height: 200,
+      resizeMode: 'center',
+      borderRadius: 8,
+      marginVertical: 8,
+    },
+    body_bold: {
+      fontSize: 18,
+      color: theme.colors.onSurface,
+      fontWeight: 'bold',
+    },
   });
 
   useEffect(() => {
@@ -81,24 +108,15 @@ const ItemScreen = ({ route }: Props) => {
         })}
         renderItem={({ item }) => (
           <View testID="comment" style={{ marginTop: 10, rowGap: 2 }}>
-            <Text
-              style={{
-                fontSize: 16,
-                color: theme.colors.onSurface,
-                fontWeight: 'bold',
-              }}
-            >
+            <Text style={pageStyles.body_bold}>
               {item.author.login} · {item.createdAt}
             </Text>
-            <Text
-              style={{
-                fontSize: 16,
-                color: theme.colors.onSurface,
-                fontWeight: 'medium',
-              }}
+            <Markdown
+              style={pageStyles}
+              markdownit={MarkdownIt({ typographer: true }).disable(['image'])}
             >
-              #{item.body}
-            </Text>
+              {item.body}
+            </Markdown>
           </View>
         )}
         ListEmptyComponent={
