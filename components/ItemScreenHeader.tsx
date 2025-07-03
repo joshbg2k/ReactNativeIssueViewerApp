@@ -43,11 +43,6 @@ const ItemScreenHeader = ({ title, number, body, date, state }: Props) => {
     },
   });
 
-  const renderImage = props => {
-    const { key, ...restProps } = props;
-    return <Image key={key} {...restProps} style={pageStyles.image} />;
-  };
-
   return (
     <View>
       <Text
@@ -101,7 +96,6 @@ const ItemScreenHeader = ({ title, number, body, date, state }: Props) => {
       </View>
       <Markdown
         style={pageStyles}
-        markdownit={MarkdownIt({ typographer: true })}
         rules={{
           image: (node, children, parent, styles) => {
             const imageUrl = node.attributes.src;

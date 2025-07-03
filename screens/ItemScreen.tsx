@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Linking, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Linking, StyleSheet, Image } from 'react-native';
 import {
   RouteProp,
   useNavigation,
@@ -30,7 +30,7 @@ const ItemScreen = ({ route }: Props) => {
     variables: { number: issue.number ?? 0 },
   });
 
-  // i know this is dupiclicated, styling the markdown content is jsut a lats minute thing to make the app look pretty!
+  // i know this is duplicated, styling the markdown content is jsut a lats minute thing to make the app look pretty!
   const pageStyles = StyleSheet.create({
     heading3: {
       fontSize: 22,
@@ -45,9 +45,7 @@ const ItemScreen = ({ route }: Props) => {
     image: {
       width: '100%',
       height: 200,
-      resizeMode: 'center',
-      borderRadius: 8,
-      marginVertical: 8,
+      resizeMode: 'contain',
     },
     body_bold: {
       fontSize: 18,
@@ -55,7 +53,6 @@ const ItemScreen = ({ route }: Props) => {
       fontWeight: 'bold',
     },
   });
-
   useEffect(() => {
     if (data) {
       const uidata = data.repository?.issue ? [data.repository.issue] : [];
@@ -113,7 +110,23 @@ const ItemScreen = ({ route }: Props) => {
             </Text>
             <Markdown
               style={pageStyles}
-              markdownit={MarkdownIt({ typographer: true }).disable(['image'])}
+              rules={{
+                image: (node, children, parent, styles) => {
+                  const imageUrl = node.attributes.src;
+                  const altText = node.attributes.alt || '';
+
+                  return (
+                    <View key={imageUrl} style={{ flex: 1 }}>
+                      <Image
+                        source={{ uri: imageUrl }}
+                        style={pageStyles.image}
+                        accessible
+                        accessibilityLabel={altText}
+                      />
+                    </View>
+                  );
+                },
+              }}
             >
               {item.body}
             </Markdown>
