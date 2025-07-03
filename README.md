@@ -2,7 +2,7 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Before Getting Started
 
-Thanks for taking the time to reivew this project!
+Thanks for taking the time to review this project!
 
 You will not be able to run this project without supplying a GitHub auth token. To make this easy, I created a file called [`env`](https://github.com/joshbg2k/ReactNativeIssueViewerApp/blob/main/env) at the root level of this project. Take these steps to set up your token:
 
