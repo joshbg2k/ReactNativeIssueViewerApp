@@ -50,9 +50,7 @@ With Metro running, open a new terminal window/pane from the root of your React 
 ~~npm run android~~
 
 ~~# OR using Yarn~~
-~~yarn android~~
-
-````~~
+~~yarn android```~~
 
 ### iOS
 
@@ -62,7 +60,7 @@ The first time you create a new project, run the Ruby bundler to install CocoaPo
 
 ```sh
 bundle install
-````
+```
 
 Then, and every time you update your native dependencies, run:
 
