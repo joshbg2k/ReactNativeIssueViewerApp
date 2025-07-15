@@ -2,6 +2,8 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Before Getting Started
 
+Some context: This was a project I worked on over a few days as part of a recent interview process. As such, it is incomplete but intended to measure my ability to work with Typescript, GraphQL, and React Native.
+
 Thanks for taking the time to review this project!
 
 You will not be able to run this project without supplying a GitHub API token. To make this easy, I created a file called [`env`](https://github.com/joshbg2k/ReactNativeIssueViewerApp/blob/main/env) at the root level of this project. Take these steps to set up your token:
