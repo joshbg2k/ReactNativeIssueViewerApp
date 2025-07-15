@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { View, Text, FlatList, Linking, StyleSheet, Image } from 'react-native';
 import {
   RouteProp,
@@ -53,7 +53,8 @@ const ItemScreen = ({ route }: Props) => {
       fontWeight: 'bold',
     },
   });
-  useEffect(() => {
+
+  useLayoutEffect(() => {
     if (data) {
       const uidata = data.repository?.issue ? [data.repository.issue] : [];
       const commentsMapped =

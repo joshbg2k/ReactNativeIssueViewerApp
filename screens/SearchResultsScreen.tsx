@@ -46,6 +46,7 @@ const SearchResultsScreen = ({ route }: Props) => {
       notifyOnNetworkStatusChange: true,
     });
 
+  // TODO create a hook for data loading
   useEffect(() => {
     if (data?.search?.edges) {
       const newItems = data.search.edges

@@ -28,6 +28,7 @@ const HomeScreen: React.FC = () => {
     },
   });
 
+  // TODO create a hook for data loading
   useEffect(() => {
     console.log('data shape');
     console.log(data);
